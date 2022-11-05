@@ -1,9 +1,14 @@
+PImage cat2;
+PImage cat;
+PImage catt;
+
 class Particle
 {
   double myX, myY, mySpeed, myAngle;
   int myColor,mySize;
   Particle(){
-    mySize=10;
+    //catt = cat2;
+    mySize= 10;
     myX = 300;
     myY = 300;
     mySpeed = (Math.random()*11)-6;
@@ -24,25 +29,31 @@ class Particle
   }
   void show(){
     fill(myColor);
-    ellipse((float)myX,(float)myY,mySize,mySize);
-  }
+   ellipse((float)myX,(float)myY,mySize,mySize);
+   
+   //image(cat2,(float)myX, (float)myY, 50,50);  
+}
 }
 
 class OddballParticle extends Particle{
   OddballParticle(){
     myX = myY = 300;
-    mySpeed = Math.random()*8;
-    myAngle = (Math.random()*Math.PI*2);
+    mySpeed = Math.random()*15;
+    myAngle = (Math.random()*2*Math.PI);
     myColor = color(255,255,0);
-    mySize = 25;
+    mySize = 50;
+   // catt = cat;
   }
 }
 
 
 Particle[] firework;  
 OddballParticle cats;
+
 void setup(){
   size(600,600);
+  cat2 = loadImage("cat2.png");
+  cat = loadImage("cat.png");
   firework = new Particle[300];
   cats = new OddballParticle();
   for(int i=0;i<firework.length;i++)
@@ -53,6 +64,7 @@ void setup(){
 
 void draw(){
   background(0);
+  image(cat,10,10);
   for (int i = 0; i<firework.length; i++){
   firework[i].move();
   firework[i].show();
